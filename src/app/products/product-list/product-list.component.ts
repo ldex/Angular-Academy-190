@@ -3,6 +3,7 @@ import { Product } from '../product.interface';
 import { ProductService } from '../product.service';
 import { Observable, EMPTY } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-product-list',
@@ -38,9 +39,12 @@ export class ProductListComponent implements OnInit {
 
   onSelect(product: Product) {
     this.selectedProduct = product;
+    this.router.navigateByUrl('/products/' + product.id);
   }
 
-  constructor(private productService: ProductService) { 
+  constructor(
+    private productService: ProductService,
+    private router: Router) { 
 
   }
 
